@@ -75,7 +75,7 @@ const patient_router = require("./routes/patient")
 const doctor_router = require("./routes/doctor")
 const insurance_router = require("./routes/insurance")
 app.use("/patient", checkJwt, patient_router)
-app.use("/doctor",checkJwt, doctor_router)
+app.use("/doctor", doctor_router)
 app.use("/insurance",checkJwt, insurance_router)
 
 app.listen(3010);

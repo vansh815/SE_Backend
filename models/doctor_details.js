@@ -5,7 +5,7 @@ const schema = mongoose.Schema({
     first_name: String,
     last_name: String,
     email: String,
-    Speciality : String,
+    speciality : String,
     street_name: String,
     city: String,
     appartment: String,
