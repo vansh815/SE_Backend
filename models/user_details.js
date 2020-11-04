@@ -9,7 +9,7 @@ const schema = mongoose.Schema({
     city: String,
     apartment: String,
     zip_code: Number,
-    phone: Number
+    phone: Number,
+    role : String
 })
-module.exports = mongoose.model("patient_details", schema)
-
+module.exports = mongoose.model("user_details", schema)

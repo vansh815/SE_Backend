@@ -6,9 +6,10 @@ const router = express.Router()
 // Get all posts
 router.post("/details", async (req, res) => {
     try {
-        const claims = get_jwt_claims(req)
-        const email = claims['https://example.com/email']
-        req.body['email'] = email
+        //const claims = get_jwt_claims(req)
+        //const email = claims['https://example.com/email']
+        const email = req.body['email']
+        //req.body['email'] = email
         const payload = req.body
         await patient_details.findOneAndUpdate({email: email}, payload, {upsert:true})
         res.status(200)
