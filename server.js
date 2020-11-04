@@ -13,7 +13,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 }
 
 const corsOptions =  {
-  origin: ['http://localhost:3000','https://health-insurance123.herokuapp.com']
+  origin: 'https://health-insurance123.herokuapp.com'
   
 };
 
