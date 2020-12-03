@@ -11,7 +11,7 @@ router.get("/details", async (req, res) => {
     try {
         const claims = get_jwt_claims(req)
         const email = claims['https://example.com/email']
-        req.body['email'] = email
+        
         const filter = {email : email}
         console.log(filter)
         const result = await user_details.exists(filter)
@@ -35,13 +35,36 @@ router.post("/details", async (req, res) => {
         //req.body['email'] = email
         console.log(req.body)
         const payload = req.body
-        await user_details.findOneAndUpdate({email: email}, payload, {upsert:true})
+        const final = await user_details.findOneAndUpdate({email: email}, payload, {upsert:true})
+        console.log(final)
         // update here 
-        if ( req.body['role'] == "patient"){
-            patient_details.findOneAndUpdate({email: email}, payload, {upsert:true})
+        if ( req.body.role == "patient"){
+            console.log("patient")
+            new_payload = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                street_name: req.body.street_name,
+                city: req.body.city,
+                zip_code: req.body.zip_code,
+                
+              }
+            const final_new = await patient_details.findOneAndUpdate({email: email}, new_payload, {upsert:true})
+            console.log(payload)
+
         }
-        else if(req.body['role']=="doctor"){
-            doctor_details.findOneAndUpdate({email: email}, payload, {upsert:true})
+        else if(final.role =="doctor"){
+            new_payload = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                street_name: req.body.street_name,
+                city: req.body.city,
+                zip_code: req.body.zip_code,
+                speciality : req.body.speciality
+                
+              }
+            const final_new = await octor_details.findOneAndUpdate({email: email}, payload, {upsert:true})
         }
         else {
             insurance_details.findOneAndUpdate({email: email}, payload, {upsert:true})

@@ -13,14 +13,11 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 }
 
 const corsOptions =  {
-<<<<<<< HEAD
+
   origin: 'http://localhost:3000'
   };
-=======
-  origin: 'https://health-insurance123.herokuapp.com'
-  
-};
->>>>>>> e8de68c9733c3ca90fe7d9a62bd0eec04b4a26bf
+
+  //origin: 'https://health-insurance123.herokuapp.com'
 
 app.use(cors(corsOptions));
 app.use(express.json())
@@ -82,7 +79,9 @@ const patient_router = require("./routes/patient")
 const doctor_router = require("./routes/doctor")
 const insurance_router = require("./routes/insurance")
 const booking_router = require("./routes/booking")
+const appointment_router = require("./routes/appointments")
 
+app.use('/appointments', checkJwt, appointment_router)
 app.use('/booking', checkJwt, booking_router)
 app.use("/patient",checkJwt, patient_router)
 app.use("/doctor",checkJwt, doctor_router)

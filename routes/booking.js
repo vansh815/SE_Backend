@@ -6,7 +6,7 @@ const { get_jwt_claims } = require("../shared/jwt_claim")
 // Get all posts
 router.post("/details", async (req, res) => {
     try {
-        console.log("here")
+        console.log("booking final")
         const claims = get_jwt_claims(req)
         const email_patient = claims['https://example.com/email']
         console.log(req.body)
