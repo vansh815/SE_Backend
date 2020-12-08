@@ -53,7 +53,7 @@ router.post("/details", async (req, res) => {
             console.log(payload)
 
         }
-        else if(final.role =="doctor"){
+        else if(req.body.role =="doctor"){
             new_payload = {
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -64,7 +64,7 @@ router.post("/details", async (req, res) => {
                 speciality : req.body.speciality
                 
               }
-            const final_new = await octor_details.findOneAndUpdate({email: email}, payload, {upsert:true})
+            const final_new = await doctor_details.findOneAndUpdate({email: email}, payload, {upsert:true})
         }
         else {
             insurance_details.findOneAndUpdate({email: email}, payload, {upsert:true})

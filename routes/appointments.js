@@ -13,7 +13,7 @@ router.get('/details', async (req, res) => {
         }
         const result = await user_details.find(filter).exec()
         res.status(200)
-        res.send(result)
+        return res.send(result)
 
     }catch(error){
         res.status(404)

@@ -33,6 +33,8 @@ router.get('/details', async (req, res) => {
             ]
         }
         const result = await doctor_details.find(filter).exec()
+        console.log("doctor details:")
+        console.log(result)
         res.status(200)
         res.send(result)
 
